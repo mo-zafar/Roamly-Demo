@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Roamly | Explore & Earn</title>
+<style>
+:root{--blue:#0a6cf0;--navy:#1b2a8a;--cyan:#35dcdc;--ink:#000;--mute:#5b6070;--line:#e9ecf3;--soft:#f5f8fe;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;position:relative;overflow-x:hidden}
+.blob{position:absolute;top:0;left:0;right:0;height:360px;z-index:0;pointer-events:none;filter:blur(26px);background:radial-gradient(ellipse 42% 42% at 58% 18%,var(--navy) 0%,rgba(27,42,138,0) 100%),radial-gradient(ellipse 40% 40% at 76% 30%,var(--blue) 0%,rgba(10,108,240,0) 100%),radial-gradient(ellipse 34% 36% at 92% 38%,var(--cyan) 0%,rgba(53,220,220,0) 100%)}
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:20px 22px 48px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px}
+.small .top{margin-bottom:24px}
+.brand{font-weight:700;font-size:15px}
+.pill{background:#000;color:#fff;font-weight:700;font-size:13px;padding:6px 18px;border-radius:20px}
+.welcome{font-size:30px;font-weight:700;margin:0 0 4px}
+.mark{font-size:clamp(44px,13vw,92px);font-weight:500;letter-spacing:-.02em;line-height:1.05;margin:0 0 28px;white-space:nowrap}
+.by{font-size:14px;margin:0}.by b{display:block;font-size:17px}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+h1{font-size:28px;line-height:1.2;margin:0 0 8px}
+h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:32px 0 12px}
+p{margin:0 0 12px}.mute{color:var(--mute);font-size:14px}
+.card{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;background:#fff}
+.card.soft{background:var(--soft);border-color:var(--soft)}
+.pts{font-size:60px;font-weight:700;color:var(--blue);line-height:1;letter-spacing:-.02em}
+input[type=email],input[type=password],input[type=text],select{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;margin-bottom:10px;background:#fff;color:#000}
+input:focus{outline:2px solid var(--blue);outline-offset:1px}
+.btn{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:14px;border-radius:30px;border:1px solid var(--blue);background:var(--blue);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+.btn.alt{background:#fff;color:#000;border-color:#000}
+.btn.sm{display:inline-flex;width:auto;padding:8px 16px;font-size:14px}
+.btn[disabled]{opacity:.3;cursor:not-allowed}
+.link{background:none;border:0;color:var(--mute);font:inherit;font-size:14px;cursor:pointer;padding:0}
+a.lnk{color:var(--blue);font-weight:600;font-size:14px;text-decoration:none}
+.bar{height:6px;background:var(--line);border-radius:4px;overflow:hidden;margin:10px 0 6px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--navy),var(--blue),var(--cyan))}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.err{color:#b00020;font-size:14px;margin-bottom:10px}
+.dots{display:flex;gap:6px;margin:14px 0}
+.dots span{flex:1;height:6px;border-radius:3px;background:var(--line)}.dots span.on{background:var(--blue)}
+.tag{display:inline-block;background:#000;color:#fff;font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px}
+.tag.b{background:var(--soft);color:var(--blue)}
+.code{font-family:ui-monospace,Menlo,monospace;font-weight:700;letter-spacing:.1em;border:1px dashed #000;border-radius:8px;padding:6px 10px;display:inline-block}
+details{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+summary{cursor:pointer;color:var(--mute);font-size:14px}
+.foot{margin-top:28px;font-size:12px;color:var(--mute)}
+.tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:24px;overflow-x:auto;scrollbar-width:none}
+.tabs button{flex:1;background:none;border:0;border-bottom:2px solid transparent;padding:12px 14px;font:inherit;font-weight:600;color:var(--mute);cursor:pointer;margin-bottom:-1px;white-space:nowrap}
+.tabs button.on{color:#000;border-bottom-color:var(--blue)}
+#map{height:380px;border-radius:14px;border:1px solid var(--line);background:var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chips label{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:14px;cursor:pointer}
+.chips i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.chips input{margin:0}
+.msg{display:none;border:1px solid var(--line);background:var(--soft);border-radius:14px;padding:14px;font-size:14px;margin-bottom:12px}
+.links a{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
+.coin{position:fixed;left:0;top:0;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 32% 30%,#fff6bf 0%,#ffd23f 45%,#e6a100 100%);border:2px solid #b97800;z-index:60;pointer-events:none}
+.pop{animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
+.stat{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.dif{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid var(--blue);color:var(--blue)}
+.dif.m{background:var(--blue);color:#fff}.dif.c{background:#000;border-color:#000;color:#fff}
+.ts{display:flex;gap:6px;background:var(--soft);border-radius:12px;padding:12px 8px;margin:12px 0}
+.ts div{flex:1;text-align:center;font-weight:700;font-size:15px}
+.ts span{display:block;font-weight:500;font-size:11px;color:var(--mute)}
+.ar{font-weight:700;color:var(--blue)}
+.timg{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block;margin-bottom:12px;background:var(--soft)}
+.rec{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;margin:0 -22px 16px;padding:0 22px 12px}
+.rc{flex:0 0 250px;border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+.match{display:inline-block;font-size:11px;font-weight:700;color:#166534;background:#f0fdf4;border:1px solid #bbf7d0;padding:3px 8px;border-radius:12px;margin-bottom:8px}
+.card{box-shadow:0 1px 2px rgba(10,30,90,.05)}.timg{box-shadow:0 2px 8px rgba(10,30,90,.12)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px 0 12px}.tiles img{aspect-ratio:3/4;margin:0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.steps div{background:var(--soft);border-radius:12px;padding:10px;font-size:12px;color:var(--mute)}.steps b{display:block;color:#000;font-size:14px}
+.map{width:100%;border-radius:14px;border:1px solid var(--line);display:block;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="blob"></div>
+<div class="wrap" id="root">
+  <div class="top"><div class="brand">ROAMLY</div><div class="pill">2026</div></div>
+  <div id="app"></div>
+</div>
+<script>
+/* ===== SETTINGS ===== */
+/* true shows buttons that fake a tag scan (needed to test places that have no tag yet). Set false for real use. */
+const DEMO=true;
+/* Areas shown in the filters and on the map. To add an emirate, add a line here and give places that area name. */
+const AREAS={Dubai:{lat:25.2048,lng:55.2708,z:10},Sharjah:{lat:25.3463,lng:55.4209,z:11},Khorfakkan:{lat:25.3393,lng:56.3568,z:11}};
+const ALL={lat:24.9,lng:55.4,z:8};
+let userLoc={lat:25.2048,lng:55.2708},located=false;
+
+/* ===== CONTENT ===== */
+/* Each place has checkpoints. A landmark has one; a trail has a trailhead, middle points and a finish. h is the SHA-256 hash of the secret tag token (null = no tag programmed yet).
+   Coordinates are approximate and only used for distance and map pins. */
+const c=(id,label,type,h,t,b)=>({id,label,type,h,t,b});
+const PLACES=[
+{id:'burj-khalifa',kind:'landmark',name:'Burj Khalifa',area:'Dubai',lat:25.1972,lng:55.2744,desc:'The world\u2019s tallest building and the centre of downtown Dubai.',
+ cps:[{...c('burj-khalifa-tap','Check-in','end',null,'Burj Khalifa','Construction began in January 2004 and took six years, opening in January 2010. It stands 828 metres (2,717 feet) tall.'),pts:100}],
+ out:{name:'Din Tai Fung',where:'The Dubai Mall (Lower Ground)',offer:'20% off the bill or a free dumpling basket',cost:150}},
+{id:'burj-al-arab',kind:'landmark',name:'Burj Al Arab',area:'Dubai',lat:25.1412,lng:55.1852,desc:'The sail-shaped luxury hotel on its own island.',
+ cps:[{...c('burj-al-arab-tap','Check-in','end',null,'Burj Al Arab','Designed to resemble the sail of a dhow, it has a helipad 210 metres up that once hosted a tennis match between Roger Federer and Andre Agassi.'),pts:90}],
+ out:{name:'Al Samar Lounge',where:'Souk Madinat Jumeirah',offer:'Free mocktail with any dessert',cost:120}},
+{id:'qasba-sharjah',kind:'landmark',name:'Al Qasba',area:'Sharjah',lat:25.3225,lng:55.3783,desc:'Sharjah\u2019s cultural and waterside entertainment destination.',
+ cps:[{...c('qasba-tap','Check-in','end',null,'Al Qasba','A one-kilometre canal lined with cafes and art centres, home to the Maraya Art Centre and traditional abra rides.'),pts:75}],
+ out:{name:'Local Artisan Craft Souq',where:'Al Qasba Canal Plaza',offer:'AED 30 voucher for handmade goods',cost:100}},
+{id:'rabi',kind:'trail',name:'Rafisah Trail',ar:'مسار الرفيصة',area:'Khorfakkan',lat:25.289,lng:56.175,km:6.1,up:320,desc:'From the dam up to the Al Suhub viewpoint along a marked mountain trail with lake and sea views.',treat:'30-Min Kayak Rental',cps:[
+ c('rabi-start','Trailhead','start','8d8942ba15a282496b18f854595c755649e6d89834fa855b282077cedad826f2','Al Rafisah Dam','Built in the 1980s, the dam holds the seasonal waters of Wadi Shie. Its lake is about 13 metres deep, and the wadi is known to archaeologists for its finds.'),
+ c('rabi-50','Halfway',0,'781642fab21c649d13501990014b763b157ba4a654dff02b2f4f871b361bcb57','The trail to Al Suhub','A marked trail climbs from the dam to the Al Suhub rest area, about 3 km each way. A round trip usually takes around three hours.'),
+ c('rabi-end','Finish','end','fc18459977d8d8718693aa4e40c50332246c1d06b9e3901c2f483733ddc7529f','Views over Khorfakkan','From the summit you can see the sea, Khorfakkan city and its port.')]},
+{id:'shees',kind:'trail',name:'Wadi Shees Oasis',ar:'وادي شيص',area:'Khorfakkan',lat:25.32,lng:56.31,km:4.2,up:190,desc:'A falaj-fed valley with palm groves, farms and a historic village.',treat:'Mountain Honey Tea',cps:[
+ c('shees-start','Trailhead','start','4ae8dd50f6928fae2bb99576f9e1025b5d30234a7d3a9d4b8c83d574052b32d1','Wadi Shees','Wadi Shees runs through the mountains behind Khorfakkan. Before the Khorfakkan road was built, the village of Shis could only be reached by a track up the wadi.'),
+ c('shees-50','Halfway',0,'cf139b57f5f345352d6d15097bee6b0c43ad8774d25a976661c6c5e29bb25e74','The falaj','A falaj is a channel that carries water downhill from a mountain source to farms and homes without any pump. The ancient falaj system here keeps water running through the valley.'),
+ c('shees-end','Finish','end','47d6f0159ee62703ce30c0bba720024310ee7b5b16d0749c988db3ef5bc6fd9b','The palm oasis','Shade from date palms, small farms and a historic village share the valley floor, a reminder that in the Hajar Mountains settlement followed the water.')]},
+{id:'najd',kind:'trail',name:'Najd Al Maqsar',ar:'نجد المقصار',area:'Khorfakkan',lat:25.3,lng:56.2,km:3.6,up:260,desc:'A restored mountain village with century-old houses, a roughly 300-year-old fort and ancient rock engravings.',treat:'Traditional Tea & Dates',cps:[
+ c('najd-start','Trailhead','start','f69f1923d8a425805b6912656ced42408cfc83830aba5d0893f02905a58d2a74','Najd Al Maqsar','A mountain settlement above Wadi Shie. People from Khorfakkan took shelter in the mountains when the Portuguese held the coast.'),
+ c('najd-50','Halfway',0,'11cb9f410277d87a2a432118de621b531211e36036d2400dbc08f39d925cd793','The old houses','The village has 13 houses nearly a century old, restored so visitors can see how families lived in the mountains.'),
+ c('najd-end','Finish','end','f5d9af159fc6175f4e863143059b386b3590f103f088bb655314fb60fd96cead','Fort and rock art','A fort about 300 years old stands here, and nearby rocks carry engravings of camels and horses dated to around 2000 BC.')]},
+{id:'rabitower',kind:'trail',name:'Al Rabi Trail',ar:'برج الرابي',area:'Khorfakkan',lat:25.347,lng:56.352,km:5.3,up:435,desc:'A 1915 watchtower and a zigzag mountain path with views over Khorfakkan and the Gulf of Oman.',treat:'Specialty Cold Brew',cps:[
+ c('rabitower-start','Trailhead','start','bc9861ff49ed0ba15ff9abc6123f1229a6628b85d2ce61d0952c045474c34471','Al Rabi Tower, 1915','This watchtower, known locally as a burj, was built in 1915 during the reign of Sheikh Saeed bin Hamad bin Majid Al Qasimi. It was one link in a chain of lookout towers protecting Khorfakkan.'),
+ c('rabitower-50','Halfway',0,'df12a11fe8462c8435fd96184359b8729c97535cad543d28c145989f3c6f5f8f','Khorfakkan, 1507','Khorfakkan sits on one of the few natural harbours in the UAE. In September 1507 a Portuguese fleet under Afonso de Albuquerque attacked the town, and its people resisted.'),
+ c('rabitower-end','Finish','end','6f607a84acb4299fb9d6cf329d5018c7424c763354605884205216cfe5af88b9','Al Adwani Tower, 1623','Down by the port stands Al Adwani Tower. According to the official account it was built in 1623 and served as a coastal lighthouse, guiding ships to the harbour.')]},
+{id:'suhub',kind:'trail',name:'Al Suhub Ridge',ar:'قمة السحب',area:'Khorfakkan',lat:25.325,lng:56.275,km:7.8,up:580,desc:'A climb to the Al Suhub rest area, the highest point in Khorfakkan, with sea and mountain views.',treat:'20% Cloud Cafe Treat',cps:[
+ c('suhub-start','Trailhead','start','9ba702c8fa1d9839e3dd4a804ac29bd8521db2aba8e16895336497a65f387847','Al Suhub Rest Area','Opened in 2021 and nicknamed the Cloud Lounge, it sits at the highest point in Khorfakkan.'),
+ c('suhub-33','One-third',0,'b2474c19d27170a6d410dda2241c103ac67a8fa78f1b69b0c104758738307930','The building','The rest area is a two-floor round building 30 metres across, with a restaurant and cafe on the ground floor.'),
+ c('suhub-66','Two-thirds',0,'e527c0383933ce834de0b08b48eed66c1313b6a544e8f8a922cea9a723cf9742','The Hajar range','Hajar means rock or stone in Arabic, a fitting name for the mountain range that runs across the UAE and Oman.'),
+ c('suhub-end','Finish','end','7ba4e28ab5c46b0709f5e004b79f31f43444fdd28382bc85c030558ff1576dd9','Summit view','At about 583 metres above sea level, the viewpoint looks over the Khorfakkan coastline, with rugged mountains above a calm sea.')]}
+];
+/* Trail difficulty comes from distance and climb; trail points follow difficulty. */
+const effortH=t=>t.km/5+t.up/600;
+const MID={Easy:20,Moderate:30,Challenging:40},END={Easy:40,Moderate:60,Challenging:100};
+PLACES.forEach(p=>{if(p.kind!=='trail')return;const h=effortH(p);p.diff=h<1.25?'Easy':h<2.25?'Moderate':'Challenging';p.cps.forEach(k=>{k.pts=k.type==='start'?10:k.type==='end'?END[p.diff]:MID[p.diff]})});
+
+const QZ={'burj-khalifa-tap':['How tall is Burj Khalifa?',['600 metres','828 metres','1,010 metres'],1],'burj-al-arab-tap':['What inspired the hotel\u2019s shape?',['A palm tree','A falcon wing','A dhow sail'],2],'qasba-tap':['Which traditional boat runs along the canal?',['Abra','Gondola','Felucca'],0],'rabi-end':['What can you see from the summit?',['Burj Khalifa','The sea and Khorfakkan city','Liwa dunes'],1],'shees-end':['In the Hajar Mountains, settlement followed what?',['Gold','Roads','Water'],2],'najd-end':['About how old are the rock engravings?',['Around 300 years','Around 4,000 years','Around 50 years'],1],'rabitower-end':['What was Al Adwani Tower used as?',['A school','A market','A coastal lighthouse'],2],'suhub-end':['About how high is the viewpoint?',['583 m','83 m','1,583 m'],0]};
+PLACES.forEach(p=>p.cps.forEach(k=>{if(QZ[k.id])k.q=QZ[k.id]}));
+const OFFERS=[
+ {id:'r1',name:'Heart of Sharjah museum entry',pts:100},
+ {id:'r2',name:'Guided desert night, Mleiha',pts:250},
+ {id:'r3',name:'Dubai partner attraction ticket',pts:400},
+ ...PLACES.filter(p=>p.out).map(p=>({id:'o-'+p.id,name:p.out.name+': '+p.out.offer,pts:p.out.cost}))];
+const gm=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+
+/* ===== STORAGE (demo: this device only) ===== */
+let mem={u:{},s:null};
+const store={
+ users(){try{return JSON.parse(localStorage.getItem('rh_users')||'{}')}catch(e){return mem.u}},
+ save(u){try{localStorage.setItem('rh_users',JSON.stringify(u))}catch(e){mem.u=u}},
+ sess(){try{return localStorage.getItem('rh_sess')||sessionStorage.getItem('rh_sess')}catch(e){return mem.s}},
+ setSess(v,keep){try{localStorage.removeItem('rh_sess');sessionStorage.removeItem('rh_sess');if(v)(keep?localStorage:sessionStorage).setItem('rh_sess',v)}catch(e){mem.s=v}}
+};
+async function sha(s){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return btoa(s)}}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=t=>t?new Date(t).toLocaleString(undefined,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+const dur=ms=>{const s=Math.round(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),q=s%60;return h?`${h}h ${m}m`:m?`${m}m ${String(q).padStart(2,'0')}s`:`${q}s`};
+function km2(a,b,c,d){const R=6371,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r,k=Math.sin(x/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)**2;return Math.round(R*2*Math.atan2(Math.sqrt(k),Math.sqrt(1-k))*10)/10}
+function findTag(id){for(const p of PLACES){const k=p.cps.find(x=>x.id===id);if(k)return{p,cp:k}}return null}
+/* Each checkpoint stores only a hash of its secret tag token; the token lives only in the link written to the NFC tag. */
+function readTag(){return new URLSearchParams(location.search).get('t')||((location.hash.match(/[#&]t=([\w-]+)/)||[])[1])||null}
+async function resolveToken(tok){const h=await sha(tok);for(const p of PLACES){const k=p.cps.find(x=>x.h&&x.h===h);if(k)return k.id}return null}
+function pendingTag(){try{const[t,ts]=(sessionStorage.getItem('rh_tag')||'').split('|');return t&&Date.now()-(+ts)<1800000?t:null}catch(e){return null}}
+const _t=readTag();try{if(_t)sessionStorage.setItem('rh_tag',_t+'|'+Date.now())}catch(e){}
+const ARROW='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>';
+let S={mode:'login',tab:'explore',tag:null,bad:false,result:null,err:'',area:'All',marea:'All',email:store.sess()};
+function me(){return S.email?store.users()[S.email]:null}
+function upd(fn){const us=store.users();fn(us[S.email]);store.save(us)}
+
+function scan(id){
+ const f=findTag(id);if(!f)return{bad:true};
+ const{p,cp}=f;let r={p,cp,dup:false,pts:0};
+ upd(u=>{
+  u.prog=u.prog||{};const first=!(u.prog[p.id]&&(u.prog[p.id].done.length||u.prog[p.id].runs));const g=u.prog[p.id]=u.prog[p.id]||{done:[],runs:0};
+  if(cp.type==='start'&&g.completed){g.done=[];g.completed=false}
+  if(g.done.includes(cp.id)){r.dup=true;return}
+  const i=p.cps.indexOf(cp);if(p.cps.slice(0,i).some(k=>!g.done.includes(k.id))){r.order=true;return}
+  if(!g.done.length)g.startedAt=Date.now();
+  g.done.push(cp.id);const bo=first?10:0;u.points=(u.points||0)+cp.pts+bo;r.pts=cp.pts+bo;r.bonus=bo;
+  if(cp.type==='end'){g.completed=true;g.runs++;g.lastDone=Date.now();g.lastMs=g.lastDone-(g.startedAt||g.lastDone);r.ms=g.lastMs}
+  (u.log=u.log||[]).push({t:Date.now(),tag:cp.id,pts:r.pts});
+ });
+ r.done=me().prog[p.id].done.length;return r;
+}
+function consumeTag(){
+ if(!S.tag)return;S.tab='explore';S.result=scan(S.tag);S.tag=null;try{sessionStorage.removeItem('rh_tag')}catch(e){}
+ try{history.replaceState(null,'',location.pathname)}catch(e){}
+}
+
+/* ===== PICTURES: images/<id>.jpg if present, otherwise a drawn placeholder ===== */
+function art(p){
+ const c={'burj-khalifa':['#1b2a8a','#ffb066'],'burj-al-arab':['#0a6cf0','#ffe2a8'],'qasba-sharjah':['#3b2a8a','#ff9f6b'],najd:['#e0822f','#ffe29a'],shees:['#2a9d8f','#fff2b0'],rabitower:['#1b2a8a','#ffc27a'],suhub:['#0a6cf0','#ffffff']}[p.id]||['#0a6cf0','#bfeaff'];
+ const mt=(col,y,o)=>`<polygon points="0,225 0,${y} 70,${y-45} 130,${y-10} 200,${y-60} 270,${y-15} 330,${y-50} 400,${y-5} 400,225" fill="${col}" opacity="${o}"/>`;
+ const palm=x=>`<path d="M${x} 205V150" stroke="#6b4423" stroke-width="5"/><path d="M${x} 150q-30-6-42 16M${x} 150q30-6 42 16M${x} 150q-18-30-38-24M${x} 150q18-30 38-24M${x} 150v-24" stroke="#1e8a4c" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+ const hill=mt('#0b1f6b',130,.55)+mt('#143a8f',170,.85),sand='#e8d3a8';
+ const F={
+ 'burj-khalifa':`<rect x="90" y="150" width="30" height="75" fill="#0b1f6b"/><rect x="128" y="120" width="26" height="105" fill="#13308f"/><rect x="250" y="135" width="34" height="90" fill="#13308f"/><rect x="292" y="165" width="28" height="60" fill="#0b1f6b"/><path d="M200 18L204 80 214 130 228 205H172L186 130 196 80Z" fill="#eef4ff"/><path d="M200 18V205" stroke="#9db6e8"/>`,
+ 'burj-al-arab':`<rect y="175" width="400" height="50" fill="#0b5fd0"/><path d="M0 190q25-8 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0" stroke="#7fc4ff" fill="none"/><rect x="120" y="170" width="140" height="10" rx="5" fill="#f2e6c9"/><path d="M148 172Q138 80 218 36Q204 120 236 172Z" fill="#fff"/><path d="M218 36V172" stroke="#c8d6f0"/>`,
+ 'qasba-sharjah':`<rect y="170" width="400" height="55" fill="#0f4fb0"/><rect x="40" y="150" width="60" height="22" fill="#13308f"/><rect x="300" y="140" width="60" height="32" fill="#13308f"/><circle cx="200" cy="100" r="62" fill="none" stroke="#fff" stroke-width="3"/><path d="M200 38V162M138 100H262M156 56L244 144M244 56L156 144" stroke="#fff" stroke-width="2"/><circle cx="200" cy="100" r="6" fill="#fff"/><path d="M170 185h60M180 195h40" stroke="#ffd9b0" stroke-width="3" stroke-linecap="round"/>`,
+ rabi:hill+`<rect x="100" y="140" width="200" height="40" fill="#cfd8e8"/><rect y="180" width="400" height="45" fill="#35dcdc" opacity=".85"/><path d="M110 150H290" stroke="#8ea3c9" stroke-width="3"/>`,
+ shees:mt('#0b1f6b',140,.5)+`<rect y="200" width="400" height="25" fill="#2f9e5a"/>`+palm(90)+palm(190)+palm(300),
+ najd:hill+`<rect x="150" y="105" width="100" height="75" fill="${sand}"/><rect x="132" y="85" width="34" height="95" fill="${sand}"/><rect x="234" y="85" width="34" height="95" fill="${sand}"/><path d="M132 85h34M234 85h34M150 105h100" stroke="#b58a4a" stroke-width="6" stroke-dasharray="8 6"/><path d="M188 180v-28a12 12 0 0124 0v28z" fill="#6b4423"/>`,
+ rabitower:hill+`<rect y="195" width="400" height="30" fill="#35dcdc" opacity=".8"/><rect x="186" y="86" width="28" height="100" fill="${sand}"/><rect x="180" y="76" width="40" height="14" fill="${sand}"/><path d="M180 76h40" stroke="#b58a4a" stroke-width="5" stroke-dasharray="6 4"/><path d="M195 186v-16a5 5 0 0110 0v16z" fill="#6b4423"/>`,
+ suhub:mt('#0b1f6b',120,.6)+mt('#143a8f',160,.9)+`<ellipse cx="90" cy="60" rx="40" ry="10" fill="#fff" opacity=".7"/><ellipse cx="320" cy="90" rx="46" ry="11" fill="#fff" opacity=".6"/><rect x="165" y="62" width="70" height="26" rx="6" fill="#fff"/><ellipse cx="200" cy="62" rx="40" ry="9" fill="#d8e6ff"/>`};
+ const body=F[p.id]!==undefined?F[p.id]:hill;
+ return'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="#7fe3e3"/></linearGradient></defs><rect width="400" height="225" fill="url(#g)"/><circle cx="318" cy="58" r="26" fill="${c[1]}" opacity=".9"/><rect y="195" width="400" height="30" fill="#eef4ff"/>${body}</svg>`)}
+const img=(p,st)=>`<img class="timg" ${st?`style="${st}"`:''} src="${art(p)}" alt="${esc(p.name)}">`;
+const dc=p=>p.kind!=='trail'?'':p.diff==='Easy'?'':p.diff==='Moderate'?' m':' c';
+const total=p=>p.cps.reduce((s,k)=>s+k.pts,0);
+
+/* ===== VIEWS ===== */
+function authView(){
+ const login=S.mode==='login',t=S.tag&&findTag(S.tag);
+ return`<p class="welcome">Explore with</p><div class="mark">ROAMLY</div><p class="by">Turn exploring your city into rewards.</p>
+ <div class="tiles">${['burj-khalifa','najd','suhub'].map(i=>`<img class="timg" alt="" src="${art(PLACES.find(x=>x.id===i))}">`).join('')}</div>
+ <div class="steps"><div><b>1 Tap</b>Scan a tag to prove you were there</div><div><b>2 Learn</b>Unlock the story, play a game</div><div><b>3 Earn</b>Spend points at local partners</div></div><hr>
+ ${t?`<div class="card soft"><span class="tag">Tag detected</span><p style="margin:10px 0 0">Sign in to record your check-in at <b>${esc(t.p.name)}</b>. Nothing is counted until you are signed in.</p></div>`:''}
+ <h1>${login?'Welcome back':'Create your account'}</h1>
+ <p class="mute">${login?'Sign in to collect points across the UAE.':'Tap tags at landmarks and trails, collect points and redeem them at partner outlets.'}</p>
+ ${S.err?`<div class="err">${esc(S.err)}</div>`:''}
+ ${login?'':'<input id="nm" type="text" placeholder="Your name" autocomplete="name">'}
+ <input id="em" type="email" placeholder="Email" autocomplete="email">
+ <input id="pw" type="password" placeholder="Password (6+ characters)" autocomplete="${login?'current-password':'new-password'}">
+ <label class="mute" style="display:block;margin-bottom:14px"><input id="keep" type="checkbox" checked> Keep me signed in</label>
+ <button class="btn" data-a="submit">${login?'Sign in':'Create account'} ${ARROW}</button>
+ <p class="mute" style="text-align:center;margin-top:16px">${login?'New here?':'Already have an account?'} <button class="link" style="color:var(--blue);font-weight:600" data-a="mode">${login?'Create an account':'Sign in'}</button></p>`;
+}
+const dots=(n,t)=>`<div class="dots">${Array.from({length:t},(_,i)=>`<span class="${i<n?'on':''}"></span>`).join('')}</div>`;
+function resultView(){
+ const r=S.result;if(r.bad)return`<h1>Tag not recognised</h1><p class="mute">This tag is not linked to a place yet.</p><button class="btn" data-a="home">Back to Explore</button>`;
+ if(r.order)return`<span class="tag">${esc(r.p.name)}</span><h1 style="margin-top:12px;font-size:32px">Not yet</h1><p class="mute">Scan the earlier checkpoints first, starting with the trailhead. No points were added.</p><button class="btn" data-a="home">My points ${ARROW}</button>`;
+ const{p,cp}=r,tr=p.kind==='trail',head=!tr?`Checked in<br>${esc(p.name)}`:cp.type==='start'?`You\u2019ve started<br>${esc(p.name)}`:cp.type==='end'?`Trail complete<br>${esc(p.name)}`:`${esc(cp.label)} reached`;
+ return`<span class="tag">${esc(p.name)}</span><h1 style="margin-top:12px;font-size:32px">${head}</h1>
+ ${r.dup?'<p class="mute">You\u2019ve already scanned this checkpoint, so no extra points this time.</p>':`<div class="card soft pop"><div class="mute">Points earned</div><div class="pts" id="gain" data-n="${r.pts}">+${r.pts}</div>${r.bonus?'<div class="mute">includes +10 first-visit bonus</div>':''}</div>`}
+ ${tr&&cp.type==='end'&&!r.dup?`<div class="card"><div class="row" style="text-align:center"><div style="flex:1"><div class="mute">Distance (approx.)</div><div class="stat">${p.km} km</div></div><div style="flex:1"><div class="mute">Time</div><div class="stat">${dur(r.ms)}</div></div></div></div>`:''}
+ ${tr?`<div class="mute">Progress: ${r.done} of ${p.cps.length} checkpoints</div>${dots(r.done,p.cps.length)}`:''}
+ <h2>${esc(cp.t)}</h2><div class="card"><p style="margin:0">${esc(cp.b)}</p></div>
+ ${cp.q&&!r.dup?(r.qa?`<div class="card soft"><b>${r.qa==='ok'?'Correct! +10 points':'Not quite, the story above has the answer.'}</b></div>`:`<h2>Quick quiz \u00b7 +10 pts</h2><div class="card"><p><b>${esc(cp.q[0])}</b></p>${cp.q[1].map((o,i)=>`<button class="btn alt" style="margin-bottom:8px" data-a="qa" data-i="${i}">${esc(o)}</button>`).join('')}</div>`):''}
+ ${p.out?`<h2>Partner outlet nearby</h2><div class="card soft"><div class="row"><b>${esc(p.out.name)}</b><span class="tag b">${p.out.cost} pts</span></div><p style="margin:6px 0 0">${esc(p.out.offer)}</p><div class="mute">${esc(p.out.where)}</div></div>`:''}
+ <button class="btn" data-a="home">My points and places ${ARROW}</button>`;
+}
+function withDist(){return PLACES.map(p=>({...p,dist:km2(userLoc.lat,userLoc.lng,p.lat,p.lng)}))}
+function placeCard(p,u){
+ const g=(u.prog||{})[p.id],st=g&&g.done.length&&!g.completed?'In progress':g&&g.runs>0?'Completed':'',tr=p.kind==='trail';
+ return`<div class="card">${img(p)}<div class="row"><span class="dif${dc(p)}">${tr?p.diff:'Landmark'}</span><span class="mute">${esc(p.area)} \u00b7 ${p.dist} km${st?' \u00b7 '+st:''}</span></div>
+ <div class="row" style="margin-top:12px;align-items:baseline"><h3 style="margin:0;font-size:22px">${esc(p.name)}</h3>${tr?`<span class="ar" dir="rtl">${esc(p.ar)}</span>`:''}</div>
+ <p class="mute" style="margin:6px 0 0">${esc(p.desc)}</p>
+ ${tr?`<div class="ts"><div><span>Distance</span>${p.km} km</div><div><span>Climb</span>+${p.up} m</div><div><span>Checkpoints</span>${p.cps.length}</div><div><span>Points</span>${total(p)}</div></div><div class="mute">Finisher treat: <b style="color:#000">${esc(p.treat)}</b></div>`
+ :`<div class="ts"><div><span>Points</span>${total(p)}</div></div>${p.out?`<div class="mute">Redeem nearby: <b style="color:#000">${esc(p.out.name)}</b>, ${esc(p.out.offer)} (${p.out.cost} pts)</div>`:''}`}
+ <details><summary>${tr?'Checkpoints and points':'Did you know?'}</summary>${tr?p.cps.map(k=>`<div class="row" style="padding:8px 0"><span>${esc(k.label)}</span><b style="color:var(--blue)">+${k.pts}</b></div>`).join(''):`<p style="margin:8px 0 0">${esc(p.cps[0].b)}</p>`}</details></div>`;
+}
+const LV=[['Explorer',0],['Wanderer',100],['Pathfinder',300],['Local Legend',600]];
+function status(u){
+ const life=(u.log||[]).reduce((t,l)=>t+l.pts,0);let i=0;LV.forEach((l,j)=>{if(life>=l[1])i=j});const nx=LV[i+1];
+ const dn=p=>((u.prog||{})[p.id]||{}).runs>0,kh=PLACES.filter(p=>p.kind==='trail'&&p.area==='Khorfakkan'),n=kh.filter(dn).length;
+ const wk=new Set((u.log||[]).filter(l=>Date.now()-l.t<6048e5).map(l=>l.tag)).size;
+ const bd=[['First check-in',life>0],['Trail finisher',PLACES.some(p=>p.kind==='trail'&&dn(p))],['Khorfakkan '+n+'/'+kh.length,n===kh.length]].map(([t,on])=>`<span class="tag b" style="${on?'':'opacity:.4'}">${t}</span>`).join('');
+ return`<div class="card soft"><div class="row"><b>${LV[i][0]}</b><span class="mute">${life} status points</span></div><div class="bar"><i style="width:${nx?(life-LV[i][1])/(nx[1]-LV[i][1])*100:100}%"></i></div><div class="mute">${nx?(nx[1]-life)+' more to reach '+nx[0]:'Top level reached'}</div><div class="chips" style="margin:12px 0 0">${bd}</div></div>
+ <div class="card"><div class="row"><b>Weekly quest</b><span class="mute">${Math.min(wk,3)} of 3</span></div><div class="bar"><i style="width:${Math.min(wk,3)/3*100}%"></i></div><div class="mute">Check in at 3 places this week</div></div>`}
+function exploreView(){
+ const u=me(),all=withDist(),list=all.filter(p=>S.area==='All'||p.area===S.area),cur=[],past=[];
+ for(const p of PLACES){const g=(u.prog||{})[p.id];if(!g)continue;if(g.done.length&&!g.completed)cur.push({p,g});if(g.runs>0)past.push({p,g})}
+ const recs=list.map(p=>{const g=(u.prog||{})[p.id],done=g&&g.runs>0;let m=Math.max(72,Math.round(99-p.dist*.6));if(!done)m+=4;return{...p,m:Math.min(99,m)}}).sort((a,b)=>b.m-a.m);
+ const card=({p,g},now)=>{const nx=p.cps.find(k=>!g.done.includes(k.id));return`<div class="card"><div class="row"><b>${esc(p.name)}</b><span class="mute">${esc(p.area)}</span></div><div class="bar"><i style="width:${g.done.length/p.cps.length*100}%"></i></div>${now?`<div class="mute">${g.done.length} of ${p.cps.length} checkpoints${nx?' \u00b7 next: '+esc(nx.label.toLowerCase()):''}</div>`:`<div class="mute">Completed ${g.runs} time${g.runs>1?'s':''}${g.lastDone?' \u00b7 last '+fmt(g.lastDone):''}</div>${p.km&&g.lastMs?`<div class="mute">${p.km} km in ${dur(g.lastMs)}</div>`:''}`}</div>`};
+ const log=(u.log||[]).slice(-8).reverse();
+ return`<div class="mute">Hello, ${esc(u.name)}</div><div class="pts">${u.points||0}</div><div class="mute">spendable points</div><div style="height:14px"></div>${status(u)}
+ <select id="area" style="margin-top:20px"><option value="All">All UAE</option>${Object.keys(AREAS).map(a=>`<option ${a===S.area?'selected':''}>${a}</option>`).join('')}</select>
+ ${cur.length?`<h2>Current trail</h2>${cur.map(x=>card(x,true)).join('')}`:''}
+ <h2>Recommended for you</h2><div class="rec">${recs.map(p=>`<div class="rc"><span class="match">${p.m}% match</span>${img(p,'aspect-ratio:16/10;margin-bottom:8px')}<b style="display:block">${esc(p.name)}</b><span class="mute" style="font-size:12px">${esc(p.area)} \u00b7 ${p.dist} km away</span><p class="mute" style="font-size:12px;margin:6px 0 0">${esc(p.desc)}</p></div>`).join('')}</div>
+ <h2>Nearest first</h2>${[...list].sort((a,b)=>a.dist-b.dist).map(p=>placeCard(p,u)).join('')||'<p class="mute">No places here yet.</p>'}
+ <h2>Past visits</h2>${past.length?past.map(x=>card(x,false)).join(''):'<div class="card soft"><p class="mute" style="margin:0">Completed places will appear here.</p></div>'}
+ ${log.length?`<h2>Recent check-ins</h2><div class="card">${log.map(l=>{const f=findTag(l.tag);return`<div class="row" style="padding:6px 0"><div>${f?esc(f.p.name):''}<div class="mute">${f?esc(f.cp.label):''} \u00b7 ${fmt(l.t)}</div></div><b style="color:var(--blue)">+${l.pts}</b></div>`}).join('')}</div>`:''}
+ <h2>Redeem points</h2><p class="mute">Rewards are funded by local partners. Points expire after about 12 months; your status never does.</p>${OFFERS.map(w=>`<div class="card"><div class="row"><div><b>${esc(w.name)}</b><div class="mute">${w.pts} points</div></div><button class="btn sm" data-a="redeem" data-id="${w.id}" ${(u.points||0)<w.pts?'disabled':''}>Redeem</button></div></div>`).join('')}
+ ${(u.redeemed||[]).length?`<h2>My rewards</h2>${u.redeemed.map(x=>`<div class="card"><b>${esc(x.name)}</b><div style="margin-top:8px"><span class="code">${esc(x.code)}</span></div></div>`).join('')}`:''}
+ ${DEMO?`<details open><summary>Try a check-in (demo, no NFC tag needed)</summary><p class="mute" style="margin-top:12px">Each button does what tapping that tag would do.</p>${PLACES.map(p=>`<div class="mute" style="margin:10px 0 6px">${esc(p.name)}</div>${p.cps.map(k=>`<button class="btn alt sm" style="margin:0 6px 6px 0" data-a="sim" data-id="${k.id}">${esc(k.label)}</button>`).join('')}`).join('')}</details>`:''}
+ <p style="margin-top:24px"><button class="link" data-a="out">Sign out</button></p>
+ <div class="foot">Demo build: accounts and points are stored on this device only (or this session if storage is blocked). Partner offers and some stories are placeholders. Distances use your location if you allow it.</div>`;
+}
+function placesView(){
+ const g={};PLACES.forEach(p=>(g[p.area]=g[p.area]||[]).push(p));
+ return`<h1>Destinations</h1><p class="mute">Places to see across the emirates on the Roamly route.</p>
+ ${Object.keys(g).map(a=>`<h2>${esc(a)}</h2>${g[a].map(p=>`<div class="card"><span class="tag b">${p.kind==='trail'?'Trail':'Landmark'}</span><h3 style="margin:10px 0 6px;font-size:20px">${esc(p.name)}</h3><p>${esc(p.desc)}</p><p>${esc(p.cps[0].b)}</p><a class="lnk" href="${gm(p.name+' '+p.area)}" target="_blank" rel="noopener">Open in Google Maps</a></div>`).join('')}`).join('')}
+ <div class="foot">Dates and figures are as published by the official sources used for each place. Check opening information locally before you go.</div>`;
+}
+function mapView(){
+ const a=S.marea,L=PLACES.filter(p=>a==='All'||p.area===a),n=L.length||1,all=a==='All';
+ const cx=all?55.75:L.reduce((t,p)=>t+p.lng,0)/n,cy=all?25.2:L.reduce((t,p)=>t+p.lat,0)/n,k=all?253:a==='Khorfakkan'?1300:900;
+ const X=g=>200+(g-cx)*k,Y=t=>95-(t-cy)*k/.906,sel=L.find(p=>p.id===S.sel);
+ const pins=L.map(p=>{const x=X(p.lng),y=Y(p.lat);return`<g data-a="pin" data-id="${p.id}" style="cursor:pointer"><circle cx="${x}" cy="${y}" r="${sel&&sel.id===p.id?13:9}" fill="${p.kind==='trail'?'#1b2a8a':'#0a6cf0'}" stroke="#fff" stroke-width="3"/>${p.out?`<rect x="${x+11}" y="${y-15}" width="9" height="9" fill="#000" transform="rotate(45 ${x+15.5} ${y-10.5})"/>`:''}${all?'':`<text x="${x}" y="${y+25}" font-size="9" text-anchor="middle" fill="#000">${esc(p.name)}</text>`}</g>`}).join('');
+ return`<h1>Map</h1><p class="mute">Tap a pin to see the place and its partner reward.</p>
+ <select id="marea"><option value="All">All UAE</option>${Object.keys(AREAS).map(q=>`<option ${q===a?'selected':''}>${q}</option>`).join('')}</select>
+ <div class="chips"><label><i style="background:#0a6cf0"></i>Landmarks</label><label><i style="background:#1b2a8a"></i>Trails</label><label><i style="background:#000"></i>Partner rewards</label></div>
+ <svg class="map" viewBox="0 0 400 190"><rect width="400" height="190" fill="#eaf3ff"/><path d="M0 63H400M0 126H400M133 0V190M266 0V190" stroke="#fff" stroke-width="2"/>${pins}</svg>
+ ${sel?`<div class="card pop">${img(sel,'aspect-ratio:16/8')}<b>${esc(sel.name)}</b> <span class="mute">${esc(sel.area)}</span><p class="mute" style="margin:6px 0">${esc(sel.desc)}</p>${sel.out?`<div class="mute">Partner reward: <b style="color:#000">${esc(sel.out.name)}</b>, ${esc(sel.out.offer)}</div>`:''}<a class="lnk" href="${gm(sel.name+' '+sel.area)}" target="_blank" rel="noopener">Open in Google Maps</a></div>`:''}
+ <h2>Open in Google Maps</h2><div class="links">${L.map(p=>`<a class="lnk" href="${gm(p.name+' '+p.area)}" target="_blank" rel="noopener">${esc(p.name)}</a>`).join('')}</div>
+ <div class="foot">Schematic map for the demo. Pin positions are approximate.</div>`;
+}
+function render(){
+ const u=me();document.getElementById('root').className='wrap'+(u?' small':'');
+ let h;
+ if(!u)h=authView();
+ else{
+  const tabs=`<div class="tabs">${[['explore','Explore'],['places','Destinations'],['map','Map'],['ask','Ask']].map(([k,l])=>`<button class="${S.tab===k&&!S.result?'on':''}" data-a="tab" data-t="${k}">${l}</button>`).join('')}</div>`;
+  h=tabs+(S.result?resultView():S.tab==='places'?placesView():S.tab==='map'?mapView():S.tab==='ask'?askView():exploreView());
+ }
+ const nb=S.bad?'<div class="card soft"><b>Tag not recognised</b><p class="mute" style="margin:6px 0 0">This link is not a valid Roamly tag. Scan a tag at a landmark or trailhead to check in.</p></div>':'';
+ document.getElementById('app').innerHTML=nb+h;
+ if(!S.keep)window.scrollTo(0,0);S.keep=0;
+  if(u&&S.result)celebrate(S.result);
+}
+
+/* ===== ASSISTANT (calls the server function; the API key never touches this page) ===== */
+function snapshot(){return withDist().map(p=>({name:p.name,type:p.kind,emirate:p.area,difficulty:p.diff||null,km:p.km||null,climb_m:p.up||null,km_from_user:p.dist}))}
+function localAsk(t){
+ t=t.toLowerCase();const has=w=>w.some(x=>t.includes(x));
+ const sc=p=>{let s=0;
+  if(has(['easy','beginner','family','kids','relax']))s+=p.diff==='Easy'?3:p.kind==='landmark'?2:0;
+  if(has(['hard','challeng','steep','workout','fit']))s+=p.diff==='Challenging'?3:p.diff==='Moderate'?1:0;
+  if(has(['water','sea','lake','view','coast']))s+=['rabi','suhub','rabitower','qasba-sharjah'].includes(p.id)?2:0;
+  if(has(['history','heritage','fort','culture','old','tower']))s+=['najd','rabitower','qasba-sharjah'].includes(p.id)?3:0;
+  if(has(['architect','building','skyline','tall','luxury']))s+=p.kind==='landmark'?3:0;
+  if(has(['palm','farm','green','shade','oasis']))s+=p.id==='shees'?3:0;
+  if(has(['near','close','now','hour']))s+=Math.max(0,3-p.dist/20);
+  if(t.includes(p.area.toLowerCase())||t.includes(p.name.toLowerCase()))s+=4;
+  return s-p.dist/200};
+ const top=withDist().sort((a,b)=>sc(b)-sc(a)).slice(0,2);
+ return'Try '+top.map(p=>`${p.name} (${p.area}, ${p.dist} km away${p.km?`, ${p.km} km ${p.diff.toLowerCase()} trail`:''}, ${total(p)} points)`).join(', or ')+'. Tap its tag to check in and unlock the story. A human guide always has the final word on safety.'}
+async function sendAsk(text){
+ text=(text||'').trim().slice(0,500);if(!text||S.busy)return;
+ S.chat=S.chat||[];S.chat.push({r:'u',t:text});S.busy=true;render();let reply;
+ await new Promise(r=>setTimeout(r,450));reply=localAsk(text);
+ S.chat.push({r:'a',t:reply});S.busy=false;render();
+}
+function askView(){
+ const ch=S.chat||[];
+ return`<h1>Ask Roamly</h1><p class="mute">Tell me where you are, your time and interests and I will suggest a place or trail.</p>
+ ${ch.length?ch.map(m=>`<div class="card${m.r==='u'?' soft':''}" style="${m.r==='u'?'margin-left:36px':'margin-right:36px'}"><p style="margin:0;white-space:pre-wrap">${esc(m.t)}</p></div>`).join(''):`<div class="chips">${['Two hours in Dubai, I like architecture','An easy trail with water views','What is near me right now?'].map(q=>`<button class="btn alt sm" data-a="chip" data-q="${esc(q)}" style="margin:0 6px 6px 0;text-align:left">${esc(q)}</button>`).join('')}</div>`}
+ ${S.busy?'<p class="mute">Thinking...</p>':''}
+ <input id="q" type="text" placeholder="Ask about places and trails" maxlength="500" style="margin-top:12px">
+ <button class="btn" data-a="ask" ${S.busy?'disabled':''}>Send ${ARROW}</button>
+ <div class="foot">Suggestions are matched to the places on this site. A human guide always has the final word on safety.</div>`;
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='q')sendAsk(e.target.value)});
+document.addEventListener('change',e=>{
+ if(e.target.id==='area'){S.area=e.target.value;S.keep=1;render()}
+ else if(e.target.id==='marea'){S.marea=e.target.value;S.keep=1;render()}
+});
+
+/* ===== COIN ANIMATION ===== */
+const still=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+function coinBurst(n){
+ if(still())return;const W=innerWidth,H=innerHeight;
+ for(let i=0;i<n;i++){
+  const d=document.createElement('div');d.className='coin';document.body.appendChild(d);
+  const x0=W/2+(Math.random()-.5)*60,y0=H*.72,dx=(Math.random()-.5)*W*.9,up=H*(.25+Math.random()*.35),fall=H*.35+Math.random()*H*.2;
+  const a=d.animate([{transform:`translate(${x0}px,${y0}px) scale(.4)`,opacity:0},{transform:`translate(${x0+dx*.5}px,${y0-up}px) scale(1)`,opacity:1,offset:.4},{transform:`translate(${x0+dx}px,${y0+fall}px) scale(.9)`,opacity:0}],{duration:1300+Math.random()*1000,delay:Math.random()*350,easing:'cubic-bezier(.2,.7,.4,1)',fill:'both'});
+  a.onfinish=()=>d.remove();
+ }
+}
+function celebrate(r){
+ if(!r||r.bad||r.dup||r.order||r.fx)return;r.fx=1;
+ coinBurst(r.cp.type==='end'?55:24);
+ const e=document.getElementById('gain');if(e&&!still()){const n=+e.dataset.n,t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/800);e.textContent='+'+Math.round(n*p);if(p<1)requestAnimationFrame(f)})(t0)}
+}
+
+/* ===== EVENTS ===== */
+document.addEventListener('click',async e=>{
+ const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
+ if(a==='tab'){S.tab=b.dataset.t;S.result=null;S.bad=false;render()}
+ else if(a==='mode'){S.mode=S.mode==='login'?'signup':'login';S.err='';render()}
+ else if(a==='submit'){
+  const em=document.getElementById('em').value.trim().toLowerCase(),pw=document.getElementById('pw').value,keep=document.getElementById('keep').checked,nm=(document.getElementById('nm')||{}).value,us=store.users();
+  if(!/^\S+@\S+\.\S+$/.test(em)){S.err='Enter a valid email.';return render()}
+  if(pw.length<6){S.err='Password must be at least 6 characters.';return render()}
+  const h=await sha(pw);
+  if(S.mode==='signup'){
+   if(us[em]){S.err='An account with this email already exists.';return render()}
+   us[em]={name:(nm||'').trim()||em.split('@')[0],hash:h,points:0,prog:{},log:[],redeemed:[]};store.save(us);
+  }else if(!us[em]||us[em].hash!==h){S.err='Email or password is incorrect.';return render()}
+  S.err='';S.email=em;S.tab='explore';store.setSess(em,keep);consumeTag();render();
+ }
+ else if(a==='pin'){S.sel=b.dataset.id;S.keep=1;render()}
+ else if(a==='qa'){const r=S.result;if(r&&r.cp.q&&!r.qa){const ok=+b.dataset.i===r.cp.q[2];r.qa=ok?'ok':'no';if(ok){upd(u=>{u.points=(u.points||0)+10;(u.log=u.log||[]).push({t:Date.now(),tag:r.cp.id,pts:10})});coinBurst(14)}S.keep=1;render()}}
+ else if(a==='home'){S.result=null;S.tab='explore';render()}
+ else if(a==='out'){store.setSess(null);S.email=null;S.result=null;render()}
+ else if(a==='sim'){S.result=scan(b.dataset.id);render()}
+ else if(a==='ask'){const q=document.getElementById('q');sendAsk(q&&q.value)}
+ else if(a==='chip'){sendAsk(b.dataset.q)}
+ else if(a==='redeem'){
+  const w=OFFERS.find(x=>x.id===b.dataset.id);
+  if(w&&me().points>=w.pts){upd(u=>{u.points-=w.pts;(u.redeemed=u.redeemed||[]).unshift({name:w.name,code:'RH-'+Math.random().toString(36).slice(2,8).toUpperCase()})});render()}
+ }
+});
+(async()=>{
+ if(navigator.geolocation)navigator.geolocation.getCurrentPosition(pos=>{userLoc={lat:pos.coords.latitude,lng:pos.coords.longitude};located=true;if(me()&&!S.result&&S.tab==='explore'){S.keep=1;render()}},()=>{});
+ const tok=readTag()||pendingTag();
+ if(tok){const id=await resolveToken(tok);if(id)S.tag=id;else{S.bad=true;try{sessionStorage.removeItem('rh_tag');history.replaceState(null,'',location.pathname)}catch(e){}}}
+ if(me())consumeTag();else if(S.email){store.setSess(null);S.email=null}
+ render();
+})();
+</script>
+</body>
+</html>
